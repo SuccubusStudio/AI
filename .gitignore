@@ -1,0 +1,4 @@
+setting.txt
+*.txt
+*.py
+.DS_Store
