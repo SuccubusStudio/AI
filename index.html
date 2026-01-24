@@ -16,6 +16,14 @@
             .item img, .item video { width: 100%; height: 100%; object-fit: cover; display: block; transition: 0.6s; }
             .item:hover img, .item:hover video { transform: scale(1.05); }
             
+            .item.filler { 
+                background: rgba(255, 255, 255, 0.02); 
+                display: flex; align-items: center; justify-content: center; 
+                padding: 20px; box-sizing: border-box; color: #444; font-size: 0.75em;
+                border: 0.5px solid rgba(255, 255, 255, 0.05);
+                pointer-events: none; letter-spacing: 2px; text-transform: uppercase;
+            }
+
             .overlay { 
                 position: absolute; bottom: 0; width: 100%; 
                 background: rgba(0, 0, 0, 0.4); 
@@ -44,7 +52,7 @@
         </style>
     </head>
     <body>
-        <div class="gallery-container">
+        <div class="gallery-container" id="gallery">
             <div class="item h-2" onclick="openLightbox('99.mp4', 'video')">
                 <video src="99.mp4" autoplay loop muted playsinline></video>
                 <div class="overlay" style="">
@@ -84,7 +92,7 @@
             <div class="item h-2" onclick="openLightbox('24.webp', 'img')">
                 <img src="24.webp">
                 <div class="overlay" style="">
-                    <div class="text-content"><div class="content-title" style="color: #ffffff;">金德九 김덕구</div><div class="content-body">認為，既然被稱為「粉領族」，如果全身上下沒有 90% 的粉紅色，那簡直是對職業道德的莫大侮辱。<br>同事們則覺得自己像是在跟一枝巨大的「螢光粉紅標示筆」開會，紛紛崩潰抗議：「這絕對是桃紅！是那種長輩祝壽時會出現的壽桃色！我的眼睛要看病了！」<br>現在整間辦公室的氣氛比業績匯報還要緊張，大家正準備集資買一台專業色度計來判定勝負，輸的人要請全組喝一個禮拜的下午茶！</div></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">金德九 김덕구</div><div class="content-body">她覺得既然被稱為「粉領族」，如果全身上下沒有 90% 的粉紅色，那簡直是對職業道德的莫大侮辱。<br>同事們則覺得自己像是在跟一枝巨大的「螢光粉紅標示筆」開會，紛紛崩潰抗議：「這絕對是桃紅！是那種長輩祝壽時會出現的壽桃色！我的眼睛要看病了！」<br>現在整間辦公室的氣氛比業績匯報還要緊張，這到底是粉紅還是桃紅？大家正準備集資買一台專業色度計來判定勝負，輸的人要請全組喝一個禮拜的下午茶！</div></div>
                 </div>
             </div>
             <div class="item h-2" onclick="openLightbox('23.webp', 'img')">
@@ -108,7 +116,7 @@
             <div class="item " onclick="openLightbox('20.webp', 'img')">
                 <img src="20.webp">
                 <div class="overlay" style="">
-                    <div class="text-content"><div class="content-title" style="color: #ffffff;">ARDEA NOIR</div><div class="content-body">姐姐總是被說長得太兇，但她心裡其實住著一個喜歡搞笑的小女孩。<br>為了讓大家覺得她很有趣，她特地買了這件「肩膀通風」的衣服，心裡想著：「大家看到我的肩膀露出來，一定會覺得這個姊姊很好笑吧？」<br>結果大家看到她，反而更緊張地逃了。</div></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">ARDEA NOIR</div><div class="content-body">姐姐總是被說長得太兇，但她心裡其實住著一個喜歡搞笑的小女孩。<br>為了讓大家覺得她很有趣，她特地買了這件「肩膀通風」的衣服，心裡想著：「大家看到我的肩膀露出來，一定會覺得我很好笑吧？」<br>結果大家看到她，反而更緊張地逃了。</div></div>
                 </div>
             </div>
             <div class="item h-2" onclick="openLightbox('19.mp4', 'video')">
@@ -192,7 +200,7 @@
             <div class="item h-2" onclick="openLightbox('6.webp', 'img')">
                 <img src="6.webp">
                 <div class="overlay" style="">
-                    <div class="text-content"><div class="content-title" style="color: #ffffff;">皮嫂</div><div class="content-body">在那個充滿臭襪子跟泡麵味的 90 年代宿舍，大姐姐一進門，整層樓瞬間變成了百貨公司香水專櫃。 大家原本都在電腦前打格鬥遊戲，看到她都以為是顯示卡燒掉，產生的次元穿梭幻覺。 她優雅地摸著厚重的電腦螢幕說：「小朋友，聽說你在這台機器裡存了我的照片？借姐姐看一下有沒有修圖好嗎？」</div></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">皮嫂 Pixel</div><div class="content-body">在那個充滿臭襪子跟泡麵味的 90 年代宿舍，大姐姐一進門，整層樓瞬間變成了百貨公司香水專櫃。 大家原本都在電腦前打格鬥遊戲，看到她都以為是顯示卡燒掉，產生的次元穿梭幻覺。 她優雅地摸著厚重的電腦螢幕說：「小朋友，聽說你在這台機器裡存了我的照片？借姐姐看一下有沒有修圖好嗎？」</div></div>
                 </div>
             </div>
             <div class="item " onclick="openLightbox('5.webp', 'img')">
@@ -217,13 +225,58 @@
                 <div class="title-content"><div class="content-title" style="color: #ffffff;">Succubus Studio</div><div class="content-body">technical problem<br>While he was organizing that tens-of-terabytes “treasure vault,” he noticed the data pulled by his automation scripts always felt off. He initially thought it was just simple JSON parsing—until he realized Eagle’s database structure is even more “stubborn” than expected.</div></div>
             </div></div>
         <div id="lightbox" onclick="this.style.display='none'"><div id="lightbox-content"></div></div>
+        
         <script>
+            const fillers = ["DECRYPTING DATA...", "SYSTEM CALIBRATION", "MORPHOLOGICAL ANALYSIS", "[ S U C C U B U S ]"];
+            
             function openLightbox(s, t) {
                 const lb=document.getElementById('lightbox');
                 const c=document.getElementById('lightbox-content');
                 lb.style.display='flex';
                 c.innerHTML = t==='img'?`<img src="${s}">`:`<video src="${s}" controls autoplay loop></video>`;
             }
+
+            function autoFill() {
+                const container = document.getElementById('gallery');
+                const baseSize = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--base-size'));
+                const cols = Math.floor(window.innerWidth / baseSize);
+                if (cols < 1) return;
+
+                const items = container.querySelectorAll('.item:not(.filler)');
+                let totalUnits = 0;
+                items.forEach(item => {
+                    if (item.classList.contains('big')) totalUnits += 4;
+                    else if (item.classList.contains('w-2') || item.classList.contains('h-2')) totalUnits += 2;
+                    else totalUnits += 1;
+                });
+
+                const remainder = totalUnits % cols;
+                // 我們只補滿最後一排的殘缺，並多加一整排來美化
+                const fillCount = remainder === 0 ? cols : (cols - remainder) + cols;
+
+                for (let i = 0; i < fillCount; i++) {
+                    const div = document.createElement('div');
+                    const rand = Math.random();
+                    let sizeClass = "";
+                    // 隨機變形：10% 橫長, 10% 縱長, 80% 方形
+                    if (rand > 0.9) sizeClass = "w-2";
+                    else if (rand > 0.8) sizeClass = "h-2";
+
+                    div.className = `item filler ${sizeClass}`;
+                    div.innerHTML = `<div>${fillers[Math.floor(Math.random() * fillers.length)]}</div>`;
+                    container.appendChild(div);
+                }
+            }
+            
+            window.onload = autoFill;
+            let resizeTimer;
+            window.onresize = () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    document.querySelectorAll('.filler').forEach(el => el.remove());
+                    autoFill();
+                }, 250);
+            };
         </script>
     </body>
     </html>
