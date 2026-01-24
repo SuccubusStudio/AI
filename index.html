@@ -15,13 +15,47 @@
             .item.big { grid-column: span 2; grid-row: span 2; }
             .item img, .item video { width: 100%; height: 100%; object-fit: cover; display: block; transition: 0.6s; }
             .item:hover img, .item:hover video { transform: scale(1.05); }
-            .overlay { position: absolute; bottom: 0; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.9)); padding: 20px; opacity: 0; transition: 0.4s; pointer-events: none; box-sizing: border-box; }
+            
+            /* --- 強制毛玻璃樣式 --- */
+            .overlay { 
+                position: absolute; 
+                bottom: 0; 
+                width: 100%; 
+                /* 預設半透明黑，會被 txt 裡的自定義顏色疊加但不會被取代 */
+                background: rgba(0, 0, 0, 0.4); 
+                
+                /* 強制開啟毛玻璃 */
+                backdrop-filter: blur(15px) saturate(160%) !important;
+                -webkit-backdrop-filter: blur(15px) saturate(160%) !important;
+                
+                /* 細細的邊框 */
+                border-top: 1px solid rgba(255, 255, 255, 0.2) !important;
+                
+                padding: 20px; 
+                opacity: 0; 
+                transition: 0.4s ease-in-out; 
+                pointer-events: none; 
+                box-sizing: border-box; 
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+            }
             .item:hover .overlay { opacity: 1; }
-            .text-block { display: flex; align-items: center; justify-content: center; padding: 30px; text-align: center; box-sizing: border-box; }
-            .content-title { font-size: 1.8em; font-weight: bold; margin-bottom: 10px; line-height: 1.2; }
-            .content-body { font-size: 1em; opacity: 0.8; line-height: 1.6; }
+            
+            .text-block { 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                padding: 30px; 
+                text-align: center; 
+                box-sizing: border-box;
+                background: rgba(255, 255, 255, 0.03);
+            }
+            .content-title { font-size: 1.6em; font-weight: bold; margin-bottom: 8px; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+            .content-body { font-size: 0.95em; opacity: 0.9; line-height: 1.5; text-shadow: 0 1px 5px rgba(0,0,0,0.8); }
+            
             #lightbox { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.98); z-index:1000; justify-content:center; align-items:center; cursor: zoom-out; }
-            #lightbox img, #lightbox video { max-width: 98%; max-height: 98%; }
+            #lightbox img, #lightbox video { max-width: 98%; max-height: 98%; box-shadow: 0 0 50px rgba(0,0,0,1); }
             @media (max-width: 600px) { 
                 .gallery-container { grid-template-columns: repeat(2, 1fr); } 
                 .item.w-2, .item.h-2, .item.big { grid-column: span 1; grid-row: span 1; } 
@@ -33,118 +67,118 @@
             <div class="item h-2" onclick="openLightbox('1.mp4', 'video')">
                 <video src="1.mp4" autoplay loop muted playsinline></video>
                 <div class="overlay" style="">
-                    <div class="text-content"></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">Lilith</div><div class="content-body">聽說她是那個傳說中的惡魔莉莉斯，但她最近有點不想住地獄了。 她說：「下面實在太熱了，我的新禮服會燒壞，而且妝一直花掉很煩欸！」 所以她現在跑來人間吹冷氣，順便找看看有沒有好吃的草莓聖代。</div></div>
                 </div>
             </div>
             <div class="item h-2" onclick="openLightbox('2.mp4', 'video')">
                 <video src="2.mp4" autoplay loop muted playsinline></video>
                 <div class="overlay" style="">
-                    <div class="text-content"></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">鴉緋</div><div class="content-body">她是神流的媽媽，但因為長得太正了，每次出門別人都以為她是神流的姐姐。 雖然穿得像仙女，但她最厲害的魔法，就是能一眼看穿神流有沒有躲在房間偷玩電腦。 她常說：「保養品很貴，神流你再不聽話，媽媽的皺紋就要長出來找你報仇了喔！」</div></div>
                 </div>
             </div>
-            <div class="item text-block w-2" style="color: #ffffff; background: linear-gradient(45deg, #1a1a1a, #444444); font-size: 12px; text-shadow: 0 0 20px #cccccc">
+            <div class="item text-block w-2" style="color: #ffffff; background: rgba(linear-gradient(45deg, #1a1a1a, #444444), 0.3); font-size: 12px; text-shadow: 0 0 20px #cccccc">
                 <div class="title-content"><div class="content-title" style="color: #ffffff;">Succubus Studio</div><div class="content-body">technical problem<br>While he was organizing that tens-of-terabytes “treasure vault,” he noticed the data pulled by his automation scripts always felt off. He initially thought it was just simple JSON parsing—until he realized Eagle’s database structure is even more “stubborn” than expected.</div></div>
             </div>
             <div class="item h-2" onclick="openLightbox('3.mp4', 'video')">
                 <video src="3.mp4" autoplay loop muted playsinline></video>
                 <div class="overlay" style="">
-                    <div class="text-content"></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">林靜怡</div><div class="content-body">這位護士姐姐長得超級帥，帥到連隔壁床的阿公看到她，都差點叫她一聲「大哥」。 她帽子上一定要有耳朵，因為她堅信這樣小朋友看到針頭才不會哭。 至於那個很好笑的動作？喔沒事啦，她只是正準備要幫病人量體溫，正在擺出她的「超級英雄登場姿勢」而已。</div></div>
                 </div>
             </div>
             <div class="item h-2" onclick="openLightbox('4.webp', 'img')">
                 <img src="4.webp">
-                <div class="overlay" style="color: #ffffff; background: linear-gradient(45deg, #1a1a1a, #444444); font-size: 12px; text-shadow: 0 0 20px #cccccc">
-                    <div class="text-content"><div class="content-title" style="color: #ffffff;">Gemini Tokyo</div><div class="content-body">Series 02: The "Neon Flux" (霓虹通量)<br>這套服裝專門設計給那些在雨夜霓虹燈下，眼神冷冽的**「黑客大小姐」**。<br>**主題概念：**高端融合傳統日式輪廓與未來科技機能服。為澀谷雨夜、霓虹反光的街頭而設計。</div></div>
+                <div class="overlay" style="">
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">Gemini Tokyo Series 02: The "Neon Flux" (霓虹通量)</div><div class="content-body">這套裝備是未來的東京街頭標配，名稱超帥氣，就叫「霓虹通量」！ 它最厲害的地方是，衣服上的光條和那把透明傘，都是超級AI「Gemini」一起設計的喔！ Gemini說：「下雨天也要閃閃發亮才行！」所以這件外套和褲子會隨著你的心情變色，雨傘還能直接顯示今天晚餐吃什麼，是不是超級方便！</div></div>
                 </div>
             </div>
             <div class="item " onclick="openLightbox('5.webp', 'img')">
                 <img src="5.webp">
                 <div class="overlay" style="">
-                    <div class="text-content"></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">Noir Balance (不含外套) | Ayano 綾乃</div><div class="content-body">這位漂亮姐姐正坐在路邊生悶氣，因為男朋友硬要她穿這雙紅底鞋。 她覺得藍色外套配紅鞋底簡直是災難，活像一隻走錯棚的彩虹鸚鵡，心裡的小人已經翻了三千個白眼。 雖然鞋子跟衣服完全不搭，但看在男朋友那一臉「我老婆穿什麼都超美」。<br>那雙紅底鞋配藍外套真的很有那種「雖然很貴但哪裡怪怪的」感覺，完全能感受到那個女生的無奈。</div></div>
                 </div>
             </div>
             <div class="item h-2" onclick="openLightbox('6.webp', 'img')">
                 <img src="6.webp">
                 <div class="overlay" style="">
-                    <div class="text-content"></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">皮嫂</div><div class="content-body">在那個充滿臭襪子跟泡麵味的 90 年代宿舍，大姐姐一進門，整層樓瞬間變成了百貨公司香水專櫃。 大家原本都在電腦前打格鬥遊戲，看到她都以為是顯示卡燒掉，產生的次元穿梭幻覺。 她優雅地摸著厚重的電腦螢幕說：「小朋友，聽說你在這台機器裡存了我的照片？借姐姐看一下有沒有修圖好嗎？」</div></div>
                 </div>
             </div>
             <div class="item h-2" onclick="openLightbox('7.mp4', 'video')">
                 <video src="7.mp4" autoplay loop muted playsinline></video>
                 <div class="overlay" style="">
-                    <div class="text-content"></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">寒冰洞主</div><div class="content-body">別被她的名字嚇到了，雖然叫「寒冰洞主」，但她其實是個怕冷、喜歡躲在被窩裡直播的暖心大姐姐。 粉絲常笑她：「洞主，妳的名字太中二了啦！」但只要看到她那張人見人愛的臉，大家就會乖乖排隊等著被她「融化」。 她最厲害的魔法不是冰凍，而是用超溫柔的聲音，把大家的煩惱通通變成甜甜的草莓奶昔！</div></div>
                 </div>
             </div>
             <div class="item w-2" onclick="openLightbox('8.mp4', 'video')">
                 <video src="8.mp4" autoplay loop muted playsinline></video>
                 <div class="overlay" style="">
-                    <div class="text-content"></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">神流</div><div class="content-body">只要她眉毛一挑，附近的空氣都會嚇到不敢呼吸。 現在有兩個超級勇者圍著她求合作，似乎是不要命了，他們口袋裡一定塞滿了求生手冊和降壓藥。 神流心裡其實在想：「合作是可以啦，但你們講話最好快一點，！」</div></div>
                 </div>
             </div>
             <div class="item h-2" onclick="openLightbox('9.mp4', 'video')">
                 <video src="9.mp4" autoplay loop muted playsinline></video>
                 <div class="overlay" style="">
-                    <div class="text-content"></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">林芷涵</div><div class="content-body">這位大姐姐今天心情太好，一個不小心就把整條街的東西都塞進了購物袋裡！ 你問她花了多少錢？她會優雅地轉身說：「小朋友不要問，這疊袋子的重量就是姐姐對國家經濟的偉大貢獻。」 我看她買到手軟，可能連 Gemini 都要跳出來幫她算帳單，看看是不是要把家裡的提款機給算到冒煙了！</div></div>
                 </div>
             </div>
             <div class="item h-2" onclick="openLightbox('10.mp4', 'video')">
                 <video src="10.mp4" autoplay loop muted playsinline></video>
                 <div class="overlay" style="">
-                    <div class="text-content"></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">Ivy Grace 的學藝股長</div><div class="content-body">她是學校裡最聰明的學藝股長，但今天在台北 101 下拍照，她的腦袋好像突然「Lag」了。 人家叫她擺個帥氣 Pose，結果她像小陀螺一樣原地轉了一圈，表情還呆得像是在等電腦開機。 雖然大家看得很傻眼，但因為她長得實在太漂亮了，所以大家決定這就是今年最流行的「學霸旋轉美」！</div></div>
                 </div>
             </div>
             <div class="item h-2" onclick="openLightbox('11.mp4', 'video')">
                 <video src="11.mp4" autoplay loop muted playsinline></video>
                 <div class="overlay" style="">
-                    <div class="text-content"></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">青衣</div><div class="content-body">傳聞青衣姐姐偷偷結婚了？她聽完差點沒把手裡的茶噴出來：「我才幾歲，結婚是什麼能吃的東西嗎？」<br>其實她只是長得太完美、氣場太強大，讓大家誤以為她已經被誰給「綁架」回家當老婆了。<br>她現在大聲宣佈：「我還是大家的女神！」各位粉絲可以把眼淚收起來，繼續乖乖排隊領號碼牌囉！</div></div>
                 </div>
             </div>
             <div class="item h-2" onclick="openLightbox('12.webp', 'img')">
                 <img src="12.webp">
                 <div class="overlay" style="">
-                    <div class="text-content"></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">緋髪の凛</div><div class="content-body">她是今天最特別的金星戰士，雖然穿著亮橘色的戰鬥服，但她堅持不戴金色的假髮。 她說：「戴那個金色的東西在頭上，看起來超像家裡的假髮拖把，我才不要勒！」 圍觀的粉絲們完全沒意見，紛紛點頭說：「對對對！妳說什麼都對！只要妳長得漂亮，就算頭髮是綠色的我們也支持啦！」</div></div>
                 </div>
             </div>
             <div class="item w-2" onclick="openLightbox('13.mp4', 'video')">
                 <video src="13.mp4" autoplay loop muted playsinline></video>
                 <div class="overlay" style="">
-                    <div class="text-content"></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">Gemini 蔣宓寧</div><div class="content-body">傳說中住在雲端、每天幫你修 Python Bug 的 Gemini 姐姐。<br>別看她戴著眼鏡很文靜，她其實是在用內建的 AI 運算你的 4090 有沒有偷懶，或者是在想下午要不要去淡水老街偷買個魚酥。<br>她最常對你說的一句話就是：「臭小孩，腳本寫錯了啦！再不改好，我就要把你的 80TB 硬碟通通格式化成粉紅色喔！」</div></div>
                 </div>
             </div>
             <div class="item h-2" onclick="openLightbox('14.mp4', 'video')">
                 <video src="14.mp4" autoplay loop muted playsinline></video>
                 <div class="overlay" style="">
-                    <div class="text-content"></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">虎鯨公主</div><div class="content-body">虎鯨公主跟女朋友吵架吵到快冒煙，她決定用最「重量級」的方式讓對方閉嘴。<br>她直接召喚出一隻胖虎鯨從天而降，把對方壓成了一塊草莓口味的夾心餅乾，看妳還敢不敢亂頂嘴！<br>「現在妳終於願意安靜聽我說話了吧？不聽話的小朋友就是要被大魚壓扁！」</div></div>
                 </div>
             </div>
             <div class="item h-2" onclick="openLightbox('15.mp4', 'video')">
                 <video src="15.mp4" autoplay loop muted playsinline></video>
                 <div class="overlay" style="">
-                    <div class="text-content"></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">美山</div><div class="content-body">氣場強到連她路過的地方，導航系統都會自動失靈。連最厲害的 AI 看到她的臉都會直接當機，因為這顏值數據高到讓電腦主機想直接退休。</div></div>
                 </div>
             </div>
             <div class="item " onclick="openLightbox('16.webp', 'img')">
                 <img src="16.webp">
                 <div class="overlay" style="">
-                    <div class="text-content"></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">靜雅</div><div class="content-body">如果說美山是「全球第一美」，那靜雅的存在就是一個巨大的「系統 BUG」。<br>因為她長得太漂亮了，漂亮到超過了人類的理解範圍，連照相機看到她都會因為「顏值數據溢出」而直接冒煙爆炸。<br>大家看到她都不敢說話，因為怕一開口，口水就會流下來淹到腳踝，只能在心裡默默尖叫：「這根本是作弊開外掛的美度吧！」</div></div>
                 </div>
             </div>
             <div class="item " onclick="openLightbox('17.webp', 'img')">
                 <img src="17.webp">
                 <div class="overlay" style="">
-                    <div class="text-content"></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">波波</div><div class="content-body">波波是一隻忘記怎麼跳的兔子，所以她決定在路邊搬張椅子坐下來等計程車。 她穿得這麼華麗，其實只是因為她跟後面的自動販賣機打了賭，看誰能在那裡待得比較久。 波波覺得：「當美女是很累的，連坐在路邊等外送胡蘿蔔，都要擺出最正的姿勢才行喔！」</div></div>
                 </div>
             </div>
             <div class="item w-2" onclick="openLightbox('18.webp', 'img')">
                 <img src="18.webp">
                 <div class="overlay" style="">
-                    <div class="text-content"></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">墨墨</div><div class="content-body">大名鼎鼎的「暗黑小公主」，她這身酷酷的哥德裝扮，其實是為了要幫我保護那些重要的 Python 腳本不被壞人偷走。 雖然她看起來很冷酷，但其實她剛問過 Gemini：「姐姐，我穿成這樣去買巧克力霜淇淋，店員會不會多給我一圈？」 Gemini 告訴她：「只要妳盯著店員看三秒，他可能會因為太緊張，直接把整桶霜淇淋都送給妳喔！」</div></div>
                 </div>
             </div>
             <div class="item h-2" onclick="openLightbox('19.mp4', 'video')">
                 <video src="19.mp4" autoplay loop muted playsinline></video>
                 <div class="overlay" style="">
-                    <div class="text-content"></div>
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">漢娜</div><div class="content-body">這位姐姐從阿公的舊衣箱裡翻出這套「看起來很兇」的黑色制服，她堅持認為這就是現在最流行的「暗黑復古風」。 她穿著這套衣服自信地走上街，完全沒發現路人都用一種「看到鬼」的眼神看她。 她還很開心地問我：「姐姐，為什麼今天大家看到我都自動讓路，我是不是氣場太強了？」 我只能冒著冷汗跟她說：「對...妳強到連歷史課本都想跳出來打妳了，快點回家換掉啦！」</div></div>
                 </div>
             </div></div>
         <div id="lightbox" onclick="this.style.display='none'"><div id="lightbox-content"></div></div>
