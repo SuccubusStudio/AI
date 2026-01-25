@@ -40,12 +40,12 @@
             #lightbox { 
                 display: none; position: fixed; top:0; left:0; width:100%; height:100%; 
                 background:rgba(0,0,0,0.98); z-index:1000; justify-content:center; align-items:center; 
-                cursor: pointer; /* 提示使用者這裡可以點擊關閉 */
+                cursor: pointer;
             }
             #lightbox img, #lightbox video { 
                 max-width: 98%; max-height: 98%; 
                 box-shadow: 0 0 50px rgba(0,0,0,1); 
-                pointer-events: none; /* 重要：讓點擊事件直接穿透給底下的 lightbox 容器 */
+                pointer-events: none;
             }
             
             @media (max-width: 600px) { 
@@ -235,31 +235,45 @@
             <div class="item text-block w-2" style="color: #ffffff; background: rgba(linear-gradient(45deg, #1a1a1a, #444444), 0.3); font-size: 12px; text-shadow: 0 0 20px #cccccc" onclick="window.open('https://succubusstudio.github.io/SuccubusOS/', '_self')">
                 <div class="title-content"><div class="content-title" style="color: #ffffff;">Succubus Studio</div><div class="content-body">technical problem<br>While he was organizing that tens-of-terabytes “treasure vault,” he noticed the data pulled by his automation scripts always felt off. He initially thought it was just simple JSON parsing—until he realized Eagle’s database structure is even more “stubborn” than expected.</div></div>
             </div></div>
-        <div id="lightbox" onclick="this.style.display='none'">
-            <div id="lightbox-content"></div>
-        </div>
+        <div id="lightbox" onclick="this.style.display='none'"><div id="lightbox-content"></div></div>
         
         <script>
             const fillers = ["DECRYPTING DATA...", "SYSTEM CALIBRATION", "MORPHOLOGICAL ANALYSIS", "[ S U C C U B U S ]"];
+            let mobileObserver = null;
             
             function openLightbox(s, t) {
                 const lb=document.getElementById('lightbox');
                 const c=document.getElementById('lightbox-content');
                 lb.style.display='flex';
-                // 移除 controls，加入 playsinline 並確保 muted 以便在手機自動播放
                 c.innerHTML = t==='img'?`<img src="${s}">`:`<video src="${s}" autoplay loop muted playsinline></video>`;
             }
 
-            function initMobileObserver() {
-                if (window.innerWidth > 1024) return;
-                const options = { root: null, rootMargin: '-35% 0px -35% 0px', threshold: 0.3 };
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) entry.target.classList.add('active');
-                        else entry.target.classList.remove('active');
-                    });
-                }, options);
-                document.querySelectorAll('.item:not(.filler)').forEach(item => observer.observe(item));
+            function toggleMobileLogic() {
+                const items = document.querySelectorAll('.item:not(.filler)');
+                
+                // 先清除所有殘留的 active 狀態
+                items.forEach(el => el.classList.remove('active'));
+
+                // PC 模式 (>1024px)：關閉雷達並退出
+                if (window.innerWidth > 1024) {
+                    if (mobileObserver) {
+                        mobileObserver.disconnect();
+                        mobileObserver = null;
+                    }
+                    return;
+                }
+
+                // 手機模式 (<=1024px)：啟動雷達
+                if (!mobileObserver) {
+                    const options = { root: null, rootMargin: '-35% 0px -35% 0px', threshold: 0.3 };
+                    mobileObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) entry.target.classList.add('active');
+                            else entry.target.classList.remove('active');
+                        });
+                    }, options);
+                    items.forEach(item => mobileObserver.observe(item));
+                }
             }
 
             function autoFill() {
@@ -295,7 +309,7 @@
             
             window.onload = () => {
                 autoFill();
-                initMobileObserver();
+                toggleMobileLogic();
             };
 
             let resizeTimer;
@@ -304,7 +318,7 @@
                 resizeTimer = setTimeout(() => {
                     document.querySelectorAll('.filler').forEach(el => el.remove());
                     autoFill();
-                    initMobileObserver();
+                    toggleMobileLogic(); // 縮放時重新判斷模式
                 }, 250);
             };
         </script>
