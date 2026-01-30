@@ -42,14 +42,9 @@
                 display: flex; align-items: center; justify-content: center; padding: 30px; 
                 text-align: center; box-sizing: border-box; background: rgba(255, 255, 255, 0.03); 
             }
-            
-            /* --- 字體調整區 --- */
-            /* 大標題：1.25em -> 1.1em */
-            .content-title { font-size: 1.1em; font-weight: bold; margin-bottom: 8px; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
-            /* 副標題：0.6em -> 0.5em */
-            .content-subtitle { font-size: 0.5em; opacity: 0.6; font-weight: normal; margin-left: 10px; vertical-align: baseline; }
-            /* 內文：0.9em -> 0.8em */
-            .content-body { font-size: 0.8em; opacity: 0.8; line-height: 1.5; text-shadow: 0 1px 5px rgba(0,0,0,0.8); }
+            .content-title { font-size: 1.25em; font-weight: bold; margin-bottom: 8px; line-height: 1.2; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+            .content-subtitle { font-size: 0.6em; opacity: 0.6; font-weight: normal; margin-left: 10px; vertical-align: baseline; }
+            .content-body { font-size: 0.9em; opacity: 0.8; line-height: 1.5; text-shadow: 0 1px 5px rgba(0,0,0,0.8); }
             
             /* Lightbox 毛玻璃效果 */
             #lightbox { 
@@ -66,18 +61,13 @@
             @media (max-width: 600px) { 
                 .gallery-container { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 50vw; } 
                 .overlay { padding: 15px; }
-                /* 手機版大標題：1em -> 0.9em */
-                .content-title { font-size: 0.9em; }
-                /* 手機版內文：0.75em -> 0.65em */
-                .content-body { font-size: 0.65em; }
+                .content-title { font-size: 1em; }
+                .content-body { font-size: 0.75em; }
             }
 
             .item.filler { 
                 background: rgba(255, 255, 255, 0.02); display: flex; align-items: center; justify-content: center; 
-                text-align: center; color: #333; 
-                /* 裝飾字：0.7em -> 0.6em */
-                font-size: 0.6em; 
-                letter-spacing: 2px; text-transform: uppercase;
+                text-align: center; color: #333; font-size: 0.7em; letter-spacing: 2px; text-transform: uppercase;
                 pointer-events: none;
             }
         </style>
@@ -281,6 +271,12 @@
             </div>
             <div class="item text-block w-2" style="" onclick="window.open('https://succubusstudio.github.io/SuccubusOS/', '_self')">
                 <div class="title-content"><div class="content-title" style="color: #ffffff;">Succubus Studio<span class="content-subtitle">Refactor your reality.</span></div><div class="content-body">重構現實的底層邏輯 現実を、再定義せよ。</div></div>
+            </div>
+            <div class="item h-2" onclick="openLightbox('2.mp4', 'video')">
+                <video src="2.mp4" autoplay loop muted playsinline></video>
+                <div class="overlay" style="">
+                    <div class="text-content"><div class="content-title" style="color: #ffffff;">小幽<span class="content-subtitle">火線颱風駕駛員</span></div><div class="content-body">剛從「火線颱風」下來，小幽中校顯然心情不太好。剛在澳洲手撕了那隻讓當地軍隊束手無策的「終焉之蝕：獄火葬魂虐殺者」。為何悶悶不樂？她跟記者透漏「我出發前在家裡廚房看到一隻小強....」這就是她最崩潰的地方！公司為了防止技術外流，嚴格規定那套能抵擋核爆的戰鬥服必須在下機甲後立刻繳回，絕對不能私自帶回家。無助的小幽脫下戰鬥服後必須乖乖回內湖面對另一個怪物，而這次的作戰恐怕並不樂觀。</div></div>
+                </div>
             </div></div>
         <div id="lightbox" onclick="closeLightbox()"><div id="lightbox-content"></div></div>
         
